@@ -2,12 +2,15 @@
 #include<stdio.h>
 using namespace std;
 
+//creating the merge method for merging the sub_arrays...
+//here ,  l means left most position index and r means right most , m means the middle one index...
 void merge(int A[], int l, int m,int r){
     int i,j,k;
-    int n1 = m-l+1;
-    int n2 = r-m;
-    int L[n1],R[n2];
+    int n1 = m-l+1;  //size of the first half sub_array...
+    int n2 = r-m;    //size of the second half sub_array...
+    int L[n1],R[n2];  //initialising the 2 sub_arrays...
     
+    //copying the data of the given array into the two sub_arrays... 
     for(i=0;i<=n1;i++){
         L[i]=A[i+l];
     }
@@ -15,6 +18,8 @@ void merge(int A[], int l, int m,int r){
         R[j]=A[m+1+j];
     }
     
+    
+    //process of 2 way merging...
     i=0;j=0;k=l;
     while(i<n1 && j<n2){
         if(L[i]<R[j]){
@@ -40,8 +45,11 @@ void merge(int A[], int l, int m,int r){
 void merge_sort(int A[],int l, int r){
     if(l<r){
         int m = (l+r)/2;
+        
+        //calling the merge_sort function recursively for the first half and for the second half array...
         merge_sort(A,l,m);
          merge_sort(A,m+1,r);
+        //and then calling the merge method to merge the sub_arrays...
          merge(A,l,m,r);
          
         
@@ -54,8 +62,11 @@ void printArray(int A[], int size)
         cout<< A[i]<<" ";
 } 
 
+
+//the driver function...
 int main() 
-{ 
+{   
+    // you can take the input from user also by simply using a for loop with 'cin' ...
     int A[] = {100,23,32,1,0,21,12,56,65,99,78,78}; 
     int arr_size = sizeof(A)/sizeof(A[0]); 
   
